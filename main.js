@@ -16,6 +16,12 @@ class DateHelper {
 		this.showGrid();
 		this.showMonths();
 	}
+	isFirstMonth(date) {
+		return date.getMonth() === this.baseMonth.getMonth();
+	}
+	isNextMonth(date) {
+		return date.getMonth() === this.baseMonth.getMonth() + 1;
+	}
 	formatDate(date) {
 		const year = date.getYear() + 1900;
 		const month = date.getMonth() + 1;
@@ -40,7 +46,11 @@ class DateHelper {
 			// create new node
 			let elem = document.createElement('li');
 			elem.innerHTML = date.getDate();
+			// prepare node attributes
 			elem.setAttribute('data-cal-date',this.formatDate(date));
+			if (this.isFirstMonth(date)) { elem.setAttribute('class','first-month') }
+			if (this.isNextMonth(date)) { elem.setAttribute('class','next-month') }
+			// append new node
 			this.calGrid.append(elem);
 			// move date forward
 			date.setDate( date.getDate() + 1 );

@@ -53,7 +53,12 @@ body {
 	text-align: right;
 	width: 11vw;
 }
-
+.first-month {
+	background-color: #FDD;
+}
+.next-month {
+	background-color: #FFD;
+}
 /*** RIGHT SIDE: SIDEBAR ***/
 #sidebar {
 	border-left: 1px solid #300;
