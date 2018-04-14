@@ -1,4 +1,4 @@
-class DateHelper {
+class TwoMonthCalendar {
 	constructor(date) {
 		// declare all variables
 		this.NUMBER_OF_DAYS = 63;
@@ -72,4 +72,4 @@ class DateHelper {
 	}
 }
 
-new DateHelper();
+new TwoMonthCalendar();
