@@ -67,11 +67,16 @@ body {
 	text-align: right;
 	width: 11vw;
 }
-.first-month {
+[data-cal-date].first-month {
 	background-color: #FDD;
 }
-.next-month {
+[data-cal-date].next-month {
 	background-color: #FFD;
+}
+[data-cal-date] .plans {
+	font-size: 11px;
+	padding: 10px 5px;
+	text-align: left;
 }
 /*** RIGHT SIDE: SIDEBAR ***/
 #sidebar {

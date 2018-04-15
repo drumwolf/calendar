@@ -69,9 +69,22 @@ class TwoMonthCalendar {
 			let elem = document.createElement('li');
 			elem.innerHTML = date.getDate();
 			// prepare node attributes
-			elem.setAttribute('data-cal-date',this.formatDate(date));
+			const formattedDate = this.formatDate(date);
+			elem.setAttribute('data-cal-date',formattedDate);
 			if (this.isFirstMonth(date)) { elem.setAttribute('class','first-month') }
 			if (this.isNextMonth(date)) { elem.setAttribute('class','next-month') }
+			// find schedule data
+			if ( Schedule[formattedDate] ) {
+				const plans = Schedule[formattedDate];
+				let ul = document.createElement('ul');
+				ul.setAttribute('class','plans');
+				for (let i = 0; i < plans.length; i++) {
+					let li = document.createElement('li');
+					li.append(plans[i]);
+					ul.append(li)
+				}
+				elem.append(ul);
+			}
 			// append new node
 			this.calGrid.append(elem);
 			// move date forward
