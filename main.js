@@ -7,14 +7,21 @@ class TwoMonthCalendar {
 		// dom elements
 		this.calGrid = document.getElementById('cal-grid');
 		this.calHeaderMonth = document.querySelector('.cal-header-month');
+		this.calPrevLink = document.querySelector('[data-action="prev"]');
+		this.calNextLink = document.querySelector('[data-action="next"]');
 		// run operations
 		this.init();
 	}
-	init() {
-		this.setBaseMonth();
+	init(date) {
+		this.setBaseMonth(date);
 		this.setFirstSunday();
 		this.showGrid();
 		this.showMonths();
+		this.attachEvents();
+	}
+	attachEvents() {
+		this.calPrevLink.addEventListener('click', this.onChangeMonth.bind(this));
+		this.calNextLink.addEventListener('click', this.onChangeMonth.bind(this));
 	}
 	isFirstMonth(date) {
 		return date.getMonth() === this.baseMonth.getMonth();
@@ -27,6 +34,11 @@ class TwoMonthCalendar {
 		const month = date.getMonth() + 1;
 		const day = date.getDate();
 		return `${year}-${ (month < 10) ? '0' : '' }${month}-${ (day < 10) ? '0' : '' }${day}`;
+	}
+	onChangeMonth(e) {
+		e.preventDefault();
+		const action = e.target.dataset.action;
+		console.log(action)
 	}
 	setBaseMonth(date) {
 		const d = date || new Date();
