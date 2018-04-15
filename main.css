@@ -25,10 +25,24 @@ body {
 /* calendar header */
 #cal-header {
 	height: 7.5vh;
+	overflow: hidden;
+	position: relative;
 }
 .cal-header-month {
 	line-height: 8vh;
 	margin: 0;
+}
+[data-action] {
+	line-height: 8vh;
+	position: absolute;
+	text-decoration: none;
+	top: 0;
+}
+[data-action='prev'] {
+	left: 20px;
+}
+[data-action='next'] {
+	right: 20px;
 }
 /* calendar week grid */
 #cal-week {
