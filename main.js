@@ -11,13 +11,14 @@ class TwoMonthCalendar {
 		this.calNextLink = document.querySelector('[data-action="next"]');
 		// run operations
 		this.init();
+		this.attachEvents();
 	}
 	init(date) {
+		date = date || new Date();
 		this.setBaseMonth(date);
 		this.setFirstSunday();
 		this.showGrid();
 		this.showMonths();
-		this.attachEvents();
 	}
 	attachEvents() {
 		this.calPrevLink.addEventListener('click', this.onChangeMonth.bind(this));
@@ -38,20 +39,29 @@ class TwoMonthCalendar {
 	onChangeMonth(e) {
 		e.preventDefault();
 		const action = e.target.dataset.action;
-		console.log(action)
+		let month = this.baseMonth.getMonth();
+		let year  = this.baseMonth.getFullYear();
+		if (action === 'next') {
+			month = (month !== 11) ? month + 1 : 0;
+			year  = (month !== 11) ? year : year + 1;
+		} else if (action === 'prev') {
+			month = (month !== 0) ? month - 1 : 11;
+			year  = (month !== 0) ? year : year - 1;
+		}
+		this.init( new Date(year, month, 1) );
 	}
 	setBaseMonth(date) {
-		const d = date || new Date();
-		this.baseMonth = new Date(d.getFullYear(), d.getMonth(), 1);
+		this.baseMonth = new Date(date.getFullYear(), date.getMonth(), 1);
 	}
 	setFirstSunday() {
-		const d = this.baseMonth;
+		const d = new Date(this.baseMonth);
 		d.setDate(d.getDate() - d.getDay());
 		this.firstSunday = d;
 	}
 	showGrid() {
 		let count = 0;
 		let date = this.firstSunday;
+		this.calGrid.innerHTML = '';
 		while (count++ < this.NUMBER_OF_DAYS) {
 			// create new date
 			date = new Date(date);
