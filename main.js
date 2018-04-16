@@ -10,7 +10,7 @@ class TwoMonthCalendar {
 		this.calPrevLink = document.querySelector('[data-action="prev"]');
 		this.calNextLink = document.querySelector('[data-action="next"]');
 		// run operations
-		this.init();
+		this.init( new Date(2018, 5, 1) );
 		this.attachEvents();
 	}
 	init(date) {
