@@ -46,7 +46,7 @@ class TwoMonthCalendar {
 			year  = (month !== 11) ? year : year + 1;
 		} else if (action === 'prev') {
 			month = (month !== 0) ? month - 1 : 11;
-			year  = (month !== 0) ? year : year - 1;
+			year  = (month !== 11) ? year : year - 1;
 		}
 		this.init( new Date(year, month, 1) );
 	}
