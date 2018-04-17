@@ -28,7 +28,9 @@ class TwoMonthCalendar {
 		return date.getMonth() === this.baseMonth.getMonth();
 	}
 	isNextMonth(date) {
-		return date.getMonth() === this.baseMonth.getMonth() + 1;
+		const nextMonth = new Date(this.baseMonth);
+		nextMonth.setMonth(nextMonth.getMonth() + 1);
+		return date.getMonth() === nextMonth.getMonth();
 	}
 	formatDate(date) {
 		const year = date.getYear() + 1900;
@@ -43,7 +45,7 @@ class TwoMonthCalendar {
 		let year  = this.baseMonth.getFullYear();
 		if (action === 'next') {
 			month = (month !== 11) ? month + 1 : 0;
-			year  = (month !== 11) ? year : year + 1;
+			year  = (month !== 0) ? year : year + 1;
 		} else if (action === 'prev') {
 			month = (month !== 0) ? month - 1 : 11;
 			year  = (month !== 11) ? year : year - 1;
