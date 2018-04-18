@@ -9,6 +9,8 @@ class TwoMonthCalendar {
 		this.calHeaderMonth = document.querySelector('.cal-header-month');
 		this.calPrevLink = document.querySelector('[data-action="prev"]');
 		this.calNextLink = document.querySelector('[data-action="next"]');
+		this.sidebarDate  = document.getElementById('sidebar-date');
+		this.sidebarPlans = document.getElementById('sidebar-plans');
 		// run operations
 		this.init( new Date(2018, 5, 1) );
 		this.attachEvents();
@@ -23,6 +25,7 @@ class TwoMonthCalendar {
 	attachEvents() {
 		this.calPrevLink.addEventListener('click', this.onChangeMonth.bind(this));
 		this.calNextLink.addEventListener('click', this.onChangeMonth.bind(this));
+		this.calGrid.addEventListener('click', this.onClickDate.bind(this));
 	}
 	isFirstMonth(date) {
 		return date.getMonth() === this.baseMonth.getMonth();
@@ -51,6 +54,13 @@ class TwoMonthCalendar {
 			year  = (month !== 11) ? year : year - 1;
 		}
 		this.init( new Date(year, month, 1) );
+	}
+	onClickDate(e) {
+		const calDate = e.target.closest('[data-cal-date]');
+		const dateString = calDate.dataset.calDate;
+		const plans = calDate.querySelector('.plans');
+		this.sidebarDate.innerHTML = dateString;
+		this.sidebarPlans.innerHTML = plans ? plans.innerHTML : null;
 	}
 	setBaseMonth(date) {
 		this.baseMonth = new Date(date.getFullYear(), date.getMonth(), 1);

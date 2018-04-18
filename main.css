@@ -85,3 +85,11 @@ body {
 	height: 100vh;
 	width: 23vw;
 }
+#sidebar-date {
+	height: 8vh;
+	line-height: 8vh;
+	margin: 0;
+}
+#sidebar-plans {
+	margin-top: 0;
+}
