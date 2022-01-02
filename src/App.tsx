@@ -1,6 +1,8 @@
-function App() {
+import Calendar from './components/Calendar'
+
+const App = () => {
   return (
-    <div>Calendar App</div>
+    <Calendar />
   );
 }
 
