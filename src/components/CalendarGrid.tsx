@@ -1,14 +1,25 @@
 import { getNextSixWeeks } from '../helpers/date'
+import { itineraryType } from './Calendar'
 
-type CalendarGridProps = { startDate: Date }
+type CalendarGridProps = {
+  startDate: Date
+  itineraryData?: itineraryType
+}
 
-const printDate = (date: Date): string => date.toISOString().split('T')[0]
+const getDateString = (date: Date): string => date.toISOString().split('T')[0]
 
-const CalendarGrid: React.FC<CalendarGridProps> = ({ startDate }) => {
+const CalendarGrid: React.FC<CalendarGridProps> = ({ startDate, itineraryData }) => {
   const dates = getNextSixWeeks(startDate)
   return (<ul>
     {
-      dates.map(date => <li>{printDate(date)}</li>)
+      dates.map(date => {
+        const dateString = getDateString(date)
+        return (<li key={dateString}>
+          <p>
+            {dateString}
+          </p>
+        </li>)
+      })
     }
   </ul>)
 }
