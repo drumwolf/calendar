@@ -1,6 +1,7 @@
-import { Grid, GridItem } from '@chakra-ui/react'
+import { Grid } from '@chakra-ui/react'
 import { getNextSixWeeks } from '../helpers/date'
-import { itineraryType } from './Calendar'
+import type { itineraryType } from './Calendar'
+import CalendarDate from './CalendarDate'
 
 type CalendarGridProps = {
   startDate: Date
@@ -22,28 +23,7 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ startDate, itineraryData })
     {
       dates.map(date => {
         const dateString = getDateString(date)
-        const itineraryItem = itineraryData[dateString]
-        const keys: { [key: string]: number } = {}
-        return (
-          <GridItem
-            key={dateString}
-            w='100%'
-            bg='gray.200'
-          >
-          <p>{dateString}</p>
-          {
-            itineraryItem && <ul>
-            {
-              itineraryItem.map((item, index)=> {
-                keys[item] = ++keys[item] || 1
-                const key = item.replace(' ','') + keys[item]
-                return <li key={key}>{item}</li>
-              })
-            }
-            </ul>
-          }
-          </GridItem>
-        )
+        return <CalendarDate key={dateString} date={date} itinerary={itineraryData[dateString]} />
       })
     }
     </Grid>
