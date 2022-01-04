@@ -26,8 +26,6 @@ const Calendar = () => {
   const [itineraryData, setItineraryData] = useState<itineraryType>({})
   const [startDate, setStartDate] = useState<Date>(new Date())
 
-  console.log(itineraryData)
-
   useEffect(() => {
     async function getAPI() {
       const rawData = await fetchAPI()
