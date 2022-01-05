@@ -1,6 +1,5 @@
 const DAYS_PER_WEEK = 7
 const TOTAL_WEEKS = 6
-const TOTAL_DAYS = DAYS_PER_WEEK * TOTAL_WEEKS
 
 export const getLastSunday = (initialDate: Date) => {
   const date = new Date(initialDate)
@@ -9,12 +8,16 @@ export const getLastSunday = (initialDate: Date) => {
 }
 
 export const getNextSixWeeks = (initialDate: Date) => {
-  const dates = []
+  const weeks = []
   const previousSundayDate = getLastSunday(initialDate)
-  for (let i = 0; i < TOTAL_DAYS; i++) {
-    const currentDate = new Date(previousSundayDate)
-    currentDate.setDate(currentDate.getDate() + i)
-    dates.push(new Date(currentDate))
+  for (let i = 0; i < TOTAL_WEEKS; i++) {
+    const days = []
+    for (let j = 0; j < DAYS_PER_WEEK; j++) {
+      const currentDate = new Date(previousSundayDate)
+      currentDate.setDate(currentDate.getDate() + (i * DAYS_PER_WEEK) + j)
+      days.push(new Date(currentDate))
+    }
+    weeks.push(days)
   }
-  return dates
+  return weeks
 }
