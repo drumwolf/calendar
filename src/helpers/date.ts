@@ -1,13 +1,13 @@
 const DAYS_PER_WEEK = 7
 const TOTAL_WEEKS = 6
 
-export const getLastSunday = (initialDate: Date) => {
+export const getLastSunday = (initialDate: Date): Date => {
   const date = new Date(initialDate)
   date.setDate(date.getDate() - date.getDay())
   return date
 }
 
-export const getNextSixWeeks = (initialDate: Date) => {
+export const getNextSixWeeks = (initialDate: Date): Date[][] => {
   const weeks = []
   const previousSundayDate = getLastSunday(initialDate)
   for (let i = 0; i < TOTAL_WEEKS; i++) {
@@ -20,4 +20,13 @@ export const getNextSixWeeks = (initialDate: Date) => {
     weeks.push(days)
   }
   return weeks
+}
+
+export const isToday = (date: Date): boolean => {
+  const today = new Date()
+  return (
+    date.getDate() === today.getDate() &&
+    date.getMonth() === today.getMonth() &&
+    date.getFullYear() === today.getFullYear()
+  )
 }

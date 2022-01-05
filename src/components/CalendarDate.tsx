@@ -1,3 +1,4 @@
+import { isToday } from '../helpers/date'
 import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
 
@@ -9,10 +10,12 @@ type CalendarDateProps = {
 const CalendarDate: React.FC<CalendarDateProps> = ({ date, itinerary }) => {
   const keys: { [key: string]: number } = {}
   const dateNumber = date.getDate()
+  const bgcolor = isToday(date) ? '#e7e7e7' : '#f7f7f7'
+
   return <Paper
     sx={{
       height: 'calc(100% - 30px)',
-      bgcolor: '#e7e7e7',
+      bgcolor,
       margin: '5px',
       padding: '10px'
     }}
