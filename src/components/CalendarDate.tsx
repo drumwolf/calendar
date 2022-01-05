@@ -1,4 +1,5 @@
 import Paper from '@mui/material/Paper'
+import Typography from '@mui/material/Typography'
 
 type CalendarDateProps = {
   date: Date
@@ -7,6 +8,7 @@ type CalendarDateProps = {
 
 const CalendarDate: React.FC<CalendarDateProps> = ({ date, itinerary }) => {
   const keys: { [key: string]: number } = {}
+  const dateNumber = date.getDate()
   return <Paper
     sx={{
       height: 'calc(100% - 30px)',
@@ -15,15 +17,15 @@ const CalendarDate: React.FC<CalendarDateProps> = ({ date, itinerary }) => {
       padding: '10px'
     }}
   >
-    {date.getDate()}
+    <Typography variant="h4">
+      {dateNumber}
+    </Typography>
     {itinerary && (<ul>
       {
         itinerary.map(item => {
           const key = item.split(' ').join('')
           keys[key] = ++keys[key] || 1
-          return (<li key={key + keys[key]}>
-            {item}
-          </li>)
+          return (<li key={key + keys[key]}>{item}</li>)
         })
       }
       </ul>
