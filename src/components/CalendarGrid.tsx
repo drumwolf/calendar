@@ -1,5 +1,6 @@
 import { getNextSixWeeks } from '../helpers/date'
 import type { itineraryType } from './Calendar'
+import CalendarDate from './CalendarDate'
 import Grid from '@mui/material/Grid'
 
 type CalendarGridProps = {
@@ -19,36 +20,26 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ startDate, itineraryData })
     {
       weeks.map((week) => {
         const weekKey = `week-${getDateString(week[0])}`
-        return <Grid container item flex='1' key={weekKey}>
-        {
-          week.map(day => <Grid item flex='1'>{getDateString(day)}</Grid>)
-        }
-        </Grid>
+        return (
+          <Grid container item flex='1' key={weekKey}>
+          {
+            week.map(date => {
+              const dateStr = getDateString(date)
+              return (
+                <Grid item key={dateStr} flex='1'>
+                  <CalendarDate
+                    date={date}
+                    itinerary={itineraryData[dateStr]}
+                  />
+                </Grid>
+              )
+            })
+          }
+          </Grid>
+        )
       })
     }
     </Grid>
-    /* {
-      weeks.map(date => {
-        const dateString = getDateString(date)
-        const itineraryItem = itineraryData[dateString]
-        const keys: { [key: string]: number } = {}
-        return (<li key={dateString}>
-          <p>{dateString}</p>
-          {
-            itineraryItem && <ul>
-            {
-              itineraryItem.map((item, index)=> {
-                keys[item] = ++keys[item] || 1
-                const key = item.replace(' ','') + keys[item]
-                return <li key={key}>{item}</li>
-              })
-            }
-            </ul>
-          }
-        </li>)
-      })
-    }
-  */
   )
 }
 
