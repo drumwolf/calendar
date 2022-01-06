@@ -1,24 +1,10 @@
 import { useState, useEffect } from 'react'
 import { fetchAPI } from '../services/gsx'
+import { formatGSXData } from '../helpers/gsx'
 import CalendarGrid from './CalendarGrid'
 
 export type itineraryType = {
   [key: string]: string[]
-}
-
-const formatGSXData = (data: string[][]): itineraryType => {
-  const dataObj: itineraryType = {}
-  let key = ''
-  data.forEach(entry => {
-    const [k, v] = entry
-    key = (k !== '') ? k : key
-    if (!dataObj[key]) {
-      Object.assign(dataObj, { [key]: [v] })
-    } else {
-      dataObj[key].push(v)
-    }
-  })
-  return dataObj
 }
 
 const Calendar = () => {
