@@ -1,9 +1,9 @@
+import type { itineraryType } from '../helpers/gsx'
 import { getNextSixWeeks } from '../helpers/date'
-import type { itineraryType } from './Calendar'
 import CalendarDate from './CalendarDate'
 import Grid from '@mui/material/Grid'
 
-type CalendarGridProps = {
+interface CalendarGridProps {
   startDate: Date
   itineraryData: itineraryType
 }

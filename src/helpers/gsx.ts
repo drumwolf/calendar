@@ -1,4 +1,6 @@
-import type { itineraryType } from '../components/Calendar'
+export type itineraryType = {
+  [key: string]: string[]
+}
 
 export const formatGSXData = (data: string[][]): itineraryType => {
   const dataObj: itineraryType = {}

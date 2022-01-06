@@ -1,11 +1,8 @@
 import { useState, useEffect } from 'react'
 import { fetchAPI } from '../services/gsx'
+import type { itineraryType } from '../helpers/gsx'
 import { formatGSXData } from '../helpers/gsx'
 import CalendarGrid from './CalendarGrid'
-
-export type itineraryType = {
-  [key: string]: string[]
-}
 
 const Calendar = () => {
 

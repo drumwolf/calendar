@@ -2,7 +2,7 @@ import { isToday } from '../helpers/date'
 import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
 
-type CalendarDateProps = {
+interface CalendarDateProps {
   date: Date
   itinerary: string[]
 }
