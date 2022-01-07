@@ -22,25 +22,35 @@ const Calendar = () => {
   }, [])
 
   return (
-    <Grid container columns={10}>
-      <Grid item sm={8}>
-        <Paper
-          sx={{
-            bgcolor: '#e7e7e7',
-            margin: '5px',
-            padding: '10px',
-            height: '5vh',
-            textAlign: 'center'
-          }}
-        >
-          <Typography variant="h3">
-            January 2022
-          </Typography>
-        </Paper>
-        <CalendarGrid
-          startDate={startDate}
-          itineraryData={itineraryData}
-        />
+    <Grid container
+      columns={10}
+      height='100vh'
+      padding={1}
+    >
+      <Grid container item
+        sm={8}
+        flexDirection='column'
+      >
+        <Grid item width='100%'>
+          <Paper
+            sx={{
+              bgcolor: '#e7e7e7',
+              padding: '10px',
+              height: '5vh',
+              textAlign: 'center'
+            }}
+          >
+            <Typography variant="h3">
+              January 2022
+            </Typography>
+          </Paper>
+        </Grid>
+        <Grid item flex={1}>
+          <CalendarGrid
+            startDate={startDate}
+            itineraryData={itineraryData}
+          />
+        </Grid>
       </Grid>
       <Grid item sm={2}>
         <Sidebar />

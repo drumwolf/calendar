@@ -14,9 +14,8 @@ const CalendarDate: React.FC<CalendarDateProps> = ({ date, itinerary }) => {
 
   return <Paper
     sx={{
-      height: 'calc(100% - 30px)',
+      height: 'calc(100% - 20px)',
       bgcolor,
-      margin: '5px',
       padding: '10px'
     }}
   >

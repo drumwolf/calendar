@@ -4,9 +4,8 @@ import Typography from '@mui/material/Typography'
 const Sidebar = () => (
   <Paper
     sx={{
-      height: 'calc(100% - 30px)',
+      height: 'calc(100% - 20px)',
       bgcolor: '#e7e7e7',
-      margin: '5px',
       padding: '10px'
     }}
   >
