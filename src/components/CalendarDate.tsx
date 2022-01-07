@@ -20,7 +20,7 @@ const CalendarDate: React.FC<CalendarDateProps> = ({ date, itinerary }) => {
       padding: '10px'
     }}
   >
-    <Typography variant="h4">
+    <Typography variant="h5">
       {dateNumber}
     </Typography>
     {itinerary && (<ul>

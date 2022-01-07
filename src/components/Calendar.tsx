@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react'
-import { fetchAPI } from '../services/gsx'
+import Grid from '@mui/material/Grid'
 import type { itineraryType } from '../helpers/gsx'
 import { formatGSXData } from '../helpers/gsx'
+import { fetchAPI } from '../services/gsx'
 import CalendarGrid from './CalendarGrid'
+import Sidebar from './Sidebar'
 
 const Calendar = () => {
 
@@ -18,12 +20,19 @@ const Calendar = () => {
     getAPI()
   }, [])
 
-  return (<div>
-    <CalendarGrid
-      startDate={startDate}
-      itineraryData={itineraryData}
-    />
-  </div>)
+  return (
+    <Grid container columns={10}>
+      <Grid item sm={8}>
+        <CalendarGrid
+          startDate={startDate}
+          itineraryData={itineraryData}
+        />
+      </Grid>
+      <Grid item sm={2}>
+        <Sidebar />
+      </Grid>
+    </Grid>
+  )
 }
 
 export default Calendar
