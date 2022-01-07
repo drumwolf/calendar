@@ -15,7 +15,7 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ startDate, itineraryData })
   return (
     <Grid container
       flexDirection='column'
-      height='100vh'
+      height='92vh'
     >
     {
       weeks.map((week) => {

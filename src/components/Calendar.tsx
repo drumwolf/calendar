@@ -5,6 +5,7 @@ import { formatGSXData } from '../helpers/gsx'
 import { fetchAPI } from '../services/gsx'
 import CalendarGrid from './CalendarGrid'
 import Sidebar from './Sidebar'
+import { Paper, Typography } from '@mui/material'
 
 const Calendar = () => {
 
@@ -23,6 +24,19 @@ const Calendar = () => {
   return (
     <Grid container columns={10}>
       <Grid item sm={8}>
+        <Paper
+          sx={{
+            bgcolor: '#e7e7e7',
+            margin: '5px',
+            padding: '10px',
+            height: '5vh',
+            textAlign: 'center'
+          }}
+        >
+          <Typography variant="h3">
+            January 2022
+          </Typography>
+        </Paper>
         <CalendarGrid
           startDate={startDate}
           itineraryData={itineraryData}
