@@ -3,6 +3,7 @@ import Typography from '@mui/material/Typography'
 
 const Sidebar = () => (
   <Paper
+    elevation={3}
     sx={{
       height: 'calc(100% - 20px)',
       bgcolor: '#e7e7e7',

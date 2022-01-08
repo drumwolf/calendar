@@ -26,13 +26,16 @@ const Calendar = () => {
       columns={10}
       height='100vh'
       padding={1}
+      spacing={1}
     >
       <Grid container item
         sm={8}
         flexDirection='column'
-      >
+        spacing={1}
+        >
         <Grid item width='100%'>
           <Paper
+            elevation={3}
             sx={{
               bgcolor: '#e7e7e7',
               padding: '10px',
@@ -40,7 +43,7 @@ const Calendar = () => {
               textAlign: 'center'
             }}
           >
-            <Typography variant="h3">
+            <Typography variant="h4">
               January 2022
             </Typography>
           </Paper>

@@ -13,6 +13,7 @@ const CalendarDate: React.FC<CalendarDateProps> = ({ date, itinerary }) => {
   const bgcolor = isToday(date) ? '#e7e7e7' : '#f7f7f7'
 
   return <Paper
+    elevation={3}
     sx={{
       height: 'calc(100% - 20px)',
       bgcolor,
