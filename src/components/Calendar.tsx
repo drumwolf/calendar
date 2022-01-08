@@ -40,7 +40,9 @@ const Calendar = () => {
               bgcolor: '#e7e7e7',
               padding: '10px',
               height: '5vh',
-              textAlign: 'center'
+              justifyContent: 'center',
+              display: 'flex',
+              alignItems: 'center'
             }}
           >
             <Typography variant="h4">
