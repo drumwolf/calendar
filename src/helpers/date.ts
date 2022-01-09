@@ -1,6 +1,11 @@
 const DAYS_PER_WEEK = 7
 const TOTAL_WEEKS = 6
 
+export const getDateString = (date: Date): string => date.toISOString().split('T')[0]
+
+export const getDateFormatted = (date: Date): string =>
+  date.toLocaleDateString("en-GB", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
+
 export const getLastSunday = (initialDate: Date): Date => {
   const date = new Date(initialDate)
   date.setDate(date.getDate() - date.getDay())

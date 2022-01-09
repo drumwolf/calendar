@@ -1,5 +1,5 @@
 import type { itineraryType } from '../helpers/gsx'
-import { getNextSixWeeks } from '../helpers/date'
+import { getDateString, getNextSixWeeks } from '../helpers/date'
 import CalendarDate from './CalendarDate'
 import Grid from '@mui/material/Grid'
 
@@ -7,8 +7,6 @@ interface CalendarGridProps {
   startDate: Date
   itineraryData: itineraryType
 }
-
-const getDateString = (date: Date): string => date.toISOString().split('T')[0]
 
 const CalendarGrid: React.FC<CalendarGridProps> = ({ startDate, itineraryData }) => {
   const weeks = getNextSixWeeks(startDate)

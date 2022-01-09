@@ -11,6 +11,7 @@ const Calendar = () => {
 
   const [itineraryData, setItineraryData] = useState<itineraryType>({})
   const [startDate, setStartDate] = useState<Date>(new Date())
+  const [selectedDate, setSelectedDate] = useState<Date>(new Date())
 
   useEffect(() => {
     async function getAPI() {
@@ -58,7 +59,10 @@ const Calendar = () => {
         </Grid>
       </Grid>
       <Grid item sm={2}>
-        <Sidebar />
+        <Sidebar
+          date={selectedDate}
+          itineraryData={itineraryData}
+        />
       </Grid>
     </Grid>
   )
