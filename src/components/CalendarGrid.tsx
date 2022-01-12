@@ -19,7 +19,11 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ startDate, itineraryData })
       weeks.map((week) => {
         const weekKey = `week-${getDateString(week[0])}`
         return (
-          <Grid container item flex='1' key={weekKey}>
+          <Grid container item
+            key={weekKey}
+            flex='1'
+            height='14.2%'
+          >
           {
             week.map(date => {
               const dateStr = getDateString(date)

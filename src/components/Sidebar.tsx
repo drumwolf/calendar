@@ -1,7 +1,6 @@
 import type { itineraryType } from '../helpers/gsx'
 import { getDateFormatted, getDateString } from '../helpers/date'
-import Paper from '@mui/material/Paper'
-import Typography from '@mui/material/Typography'
+import { List, ListItem, Paper, Typography } from '@mui/material'
 
 interface SidebarProps {
   date: Date
@@ -23,11 +22,11 @@ const Sidebar: React.FC<SidebarProps> = ({ date, itineraryData }) => {
         {getDateFormatted(date)}
       </Typography>
       {
-        itinerary && <ul>
+        itinerary && <List dense>
           {
-            itinerary.map(item => <li>{item}</li>)
+            itinerary.map(item => <ListItem>{item}</ListItem>)
           }
-        </ul>
+        </List>
       }
     </Paper>
   )
