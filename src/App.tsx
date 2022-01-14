@@ -4,9 +4,9 @@ import { SelectedDateContext } from './contexts/SelectedDateContext'
 
 const App = () => {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date())
-  const initialValue = { selectedDate }
+  const providerValue = { selectedDate, setSelectedDate }
   return (
-    <SelectedDateContext.Provider value={initialValue}>
+    <SelectedDateContext.Provider value={providerValue}>
       <Calendar />
     </SelectedDateContext.Provider>
   );
