@@ -1,6 +1,9 @@
 const DAYS_PER_WEEK = 7
 const TOTAL_WEEKS = 6
 
+export const datesAreEqual = (date1: Date, date2: Date): boolean =>
+  getDateString(date1) === getDateString(date2)
+
 export const getDateString = (date: Date): string => date.toISOString().split('T')[0]
 
 export const getDateFormatted = (date: Date): string =>

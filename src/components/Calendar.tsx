@@ -1,11 +1,10 @@
 import { useState, useEffect, useContext } from 'react'
-import Grid from '@mui/material/Grid'
+import { Grid, Paper, Typography } from '@mui/material'
 import type { itineraryType } from '../helpers/gsx'
 import { formatGSXData } from '../helpers/gsx'
 import { fetchAPI } from '../services/gsx'
 import CalendarGrid from './CalendarGrid'
 import Sidebar from './Sidebar'
-import { Paper, Typography } from '@mui/material'
 import { SelectedDateContext } from '../contexts/SelectedDateContext'
 
 const Calendar = () => {

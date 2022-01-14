@@ -1,7 +1,6 @@
-import { isToday } from '../helpers/date'
-import Paper from '@mui/material/Paper'
-import Typography from '@mui/material/Typography'
+import { Paper, Typography } from '@mui/material'
 import { SelectedDateContext } from '../contexts/SelectedDateContext'
+import { datesAreEqual, isToday } from '../helpers/date'
 import { useContext } from 'react'
 
 interface CalendarDateProps {
@@ -10,10 +9,11 @@ interface CalendarDateProps {
 }
 
 const CalendarDate: React.FC<CalendarDateProps> = ({ date, itinerary }) => {
+  const { selectedDate, setSelectedDate } = useContext(SelectedDateContext)
   const keys: { [key: string]: number } = {}
   const dateNumber = date.getDate()
-  const bgcolor = isToday(date) ? '#e7e7e7' : '#f7f7f7'
-  const { setSelectedDate } = useContext(SelectedDateContext)
+  const isSelectedDate = datesAreEqual(selectedDate, date)
+  const bgcolor = isSelectedDate ? '#e7e7e7' : isToday(date) ? '#f7dddd' : '#f7f7f7'
 
   return <Paper
     onClick={() => setSelectedDate(date)}
