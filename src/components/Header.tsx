@@ -1,10 +1,6 @@
 import { Paper, Typography } from '@mui/material'
 
-interface HeaderProps {
-  startDate: Date
-}
-
-const Header: React.FC<HeaderProps> = ({ startDate }) => <Paper
+const Header = () => <Paper
   elevation={3}
   sx={{
     bgcolor: '#e7e7e7',

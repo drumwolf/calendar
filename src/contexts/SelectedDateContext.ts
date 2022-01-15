@@ -5,4 +5,4 @@ type ContextProps = {
   setSelectedDate: any
 }
 
-export const SelectedDateContext = React.createContext<ContextProps>({ selectedDate: new Date(), setSelectedDate: new Date() })
+export const SelectedDateContext = React.createContext<ContextProps>({ selectedDate: new Date(), setSelectedDate: () => {} })

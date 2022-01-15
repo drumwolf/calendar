@@ -11,7 +11,6 @@ import Sidebar from './Sidebar'
 const Calendar = () => {
 
   const [itineraryData, setItineraryData] = useState<itineraryType>({})
-  const [startDate, setStartDate] = useState<Date>(new Date())
   const { selectedDate } = useContext(SelectedDateContext)
 
   useEffect(() => {
@@ -36,13 +35,10 @@ const Calendar = () => {
         spacing={1}
         >
         <Grid item width='100%'>
-          <Header startDate={startDate} />
+          <Header />
         </Grid>
         <Grid item flex={1}>
-          <CalendarGrid
-            startDate={startDate}
-            itineraryData={itineraryData}
-          />
+          <CalendarGrid itineraryData={itineraryData} />
         </Grid>
       </Grid>
       <Grid item sm={2}>
