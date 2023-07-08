@@ -1,5 +1,5 @@
 import { Paper, Typography } from '@mui/material'
-import { SelectedDateContext } from '../contexts/SelectedDateContext'
+import { SelectedDateContext } from '../contexts'
 import { datesAreEqual, isToday } from '../utils'
 import { useContext } from 'react'
 
