@@ -1,7 +1,6 @@
 import { useState } from 'react'
-import Calendar from './components/Calendar'
-import { SelectedDateContext } from './contexts/SelectedDateContext'
-import { StartDateContext } from './contexts/StartDateContext'
+import { Calendar } from './components'
+import { SelectedDateContext, StartDateContext } from './contexts'
 import { getHashDate } from './utils/date'
 
 const App = () => {
