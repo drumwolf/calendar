@@ -1,5 +1,5 @@
 import React from 'react'
-import { getLastSunday } from '../helpers/date'
+import { getLastSunday } from '../utils'
 
 type ContextProps = {
   startDate: Date

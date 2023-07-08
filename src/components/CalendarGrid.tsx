@@ -1,5 +1,5 @@
 import type { itineraryType } from '../helpers/gsx'
-import { getDateString, getNextSixWeeks } from '../helpers/date'
+import { getDateString, getNextSixWeeks } from '../utils'
 import CalendarDate from './CalendarDate'
 import Grid from '@mui/material/Grid'
 import { StartDateContext } from '../contexts/StartDateContext'

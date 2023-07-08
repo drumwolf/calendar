@@ -3,14 +3,16 @@ import { Grid } from '@mui/material'
 import type { itineraryType } from '../helpers/gsx'
 import { formatGSXData } from '../helpers/gsx'
 import { fetchAPI } from '../services/gsx'
-import { SelectedDateContext } from '../contexts/SelectedDateContext'
+import { SelectedDateContext, StartDateContext } from '../contexts'
+import { getMonth } from '../utils'
 import CalendarGrid from './CalendarGrid'
 import Header from './Header'
 import Sidebar from './Sidebar'
 
 const Calendar = () => {
-
+  const [currentMonth, setCurrentMonth] = useState<Date | Date[] | undefined>()
   const [itineraryData, setItineraryData] = useState<itineraryType>({})
+  const { startDate } = useContext(StartDateContext)
   const { selectedDate } = useContext(SelectedDateContext)
 
   useEffect(() => {
@@ -21,6 +23,11 @@ const Calendar = () => {
     }
     getAPI()
   }, [])
+
+  useEffect(() => {
+    const month: Date | Date[] | undefined = getMonth(startDate)
+    setCurrentMonth(month)
+  }, [startDate])
 
   return (
     <Grid container
@@ -35,7 +42,7 @@ const Calendar = () => {
         spacing={1}
         >
         <Grid item width='100%'>
-          <Header />
+          <Header month={currentMonth} />
         </Grid>
         <Grid item flex={1}>
           <CalendarGrid itineraryData={itineraryData} />

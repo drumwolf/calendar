@@ -1,5 +1,5 @@
 import type { itineraryType } from '../helpers/gsx'
-import { getDateFormatted, getDateString } from '../helpers/date'
+import { getDateFormatted, getDateString } from '../utils'
 import { List, ListItem, Paper, Typography } from '@mui/material'
 
 interface SidebarProps {

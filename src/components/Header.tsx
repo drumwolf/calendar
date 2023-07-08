@@ -3,10 +3,29 @@ import DoubleArrowOutlinedIcon from '@mui/icons-material/DoubleArrowOutlined'
 import { StartDateContext } from '../contexts/StartDateContext'
 import { useContext } from 'react'
 
+type MonthType = Date | Date[] | undefined
+
+interface HeaderProps {
+  month: MonthType
+}
+
 const lastWeekDate = (date: Date) => new Date(date.getFullYear(), date.getMonth(), date.getDate() - 7)
 const nextWeekDate = (date: Date) => new Date(date.getFullYear(), date.getMonth(), date.getDate() + 7)
 
-const Header = () => {
+const getHeaderText = (month: MonthType) => {
+  if (!month) return ''
+  if (!Array.isArray(month)) {
+    return month.toLocaleDateString('en-us', { month:'long', year:'numeric' })
+  }
+  if (Array.isArray(month)) {
+    return `${ month[0]?.toLocaleDateString('en-us', { month:'long' }) } / ${ month[1]?.toLocaleDateString('en-us', { month:'long' }) }`
+  }
+  return ''
+}
+
+const Header = ({ month }: HeaderProps) => {
+
+
   const { startDate, setStartDate } = useContext(StartDateContext)
   return (
     <Paper
@@ -28,7 +47,7 @@ const Header = () => {
         <DoubleArrowOutlinedIcon />
       </Button>
       <Typography variant="h4">
-        January 2022
+        {getHeaderText(month)}
       </Typography>
       <Button
         variant="contained"

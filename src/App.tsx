@@ -1,13 +1,15 @@
 import { useState } from 'react'
 import { Calendar } from './components'
 import { SelectedDateContext, StartDateContext } from './contexts'
-import { getHashDate } from './utils/date'
+import { getHashDate, getLastSunday } from './utils'
 
 const App = () => {
   const [startDate, setStartDate] = useState<Date>(getHashDate())
-  const [selectedDate, setSelectedDate] = useState<Date>(getHashDate())
+  const [selectedDate, setSelectedDate] = useState<Date>(getLastSunday(getHashDate()))
+
   const startDateProviderValue = { startDate, setStartDate }
   const selectedDateProviderValue = { selectedDate, setSelectedDate }
+
   return (
     <StartDateContext.Provider value={startDateProviderValue}>
       <SelectedDateContext.Provider value={selectedDateProviderValue}>
@@ -17,4 +19,4 @@ const App = () => {
   );
 }
 
-export default App;
+export default App

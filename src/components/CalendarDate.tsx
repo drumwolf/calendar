@@ -1,6 +1,6 @@
 import { Paper, Typography } from '@mui/material'
 import { SelectedDateContext } from '../contexts/SelectedDateContext'
-import { datesAreEqual, isToday } from '../helpers/date'
+import { datesAreEqual, isToday } from '../utils'
 import { useContext } from 'react'
 
 interface CalendarDateProps {
