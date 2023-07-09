@@ -24,9 +24,8 @@ const getHeaderText = (month: MonthType) => {
 }
 
 const Header = ({ month }: HeaderProps) => {
-
-
   const { startDate, setStartDate } = useContext(StartDateContext)
+
   return (
     <Paper
       elevation={3}

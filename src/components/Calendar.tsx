@@ -45,7 +45,10 @@ const Calendar = () => {
           <Header month={currentMonth} />
         </Grid>
         <Grid item flex={1}>
-          <CalendarGrid itineraryData={itineraryData} />
+          <CalendarGrid
+            itineraryData={itineraryData}
+            month={currentMonth}
+          />
         </Grid>
       </Grid>
       <Grid item sm={2}>

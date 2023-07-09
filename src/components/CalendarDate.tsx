@@ -6,14 +6,19 @@ import { useContext } from 'react'
 interface CalendarDateProps {
   date: Date
   itinerary: string[]
+  month: Date | Date[] | undefined
 }
 
-const CalendarDate: React.FC<CalendarDateProps> = ({ date, itinerary }) => {
+const CalendarDate: React.FC<CalendarDateProps> = ({ date, itinerary, month }) => {
   const { selectedDate, setSelectedDate } = useContext(SelectedDateContext)
   const keys: { [key: string]: number } = {}
   const dateNumber = date.getDate()
   const isSelectedDate = datesAreEqual(selectedDate, date)
-  const bgcolor = isSelectedDate ? '#e7e7e7' : isToday(date) ? '#f7dddd' : '#f7f7f7'
+  let isThisMonth: boolean = false
+  if (month && !Array.isArray(month)) {
+    isThisMonth = date.getMonth() === month.getMonth()
+  }
+  const bgcolor = isSelectedDate ? '#e7e7e7' : isToday(date) ? '#f7dddd' : isThisMonth ? '#f7f7f7' : "#e2e2e2"
 
   return <Paper
     onClick={() => setSelectedDate(date)}

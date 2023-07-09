@@ -7,9 +7,10 @@ import { useContext } from 'react'
 
 interface CalendarGridProps {
   itineraryData: itineraryType
+  month: Date | Date[] | undefined
 }
 
-const CalendarGrid: React.FC<CalendarGridProps> = ({ itineraryData }) => {
+const CalendarGrid: React.FC<CalendarGridProps> = ({ itineraryData, month }) => {
   const { startDate } = useContext(StartDateContext)
   const weeks = getNextSixWeeks(startDate)
   return (
@@ -34,6 +35,7 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ itineraryData }) => {
                   <CalendarDate
                     date={date}
                     itinerary={itineraryData[dateStr]}
+                    month={month}
                   />
                 </Grid>
               )
