@@ -1,9 +1,9 @@
-import type { itineraryType } from '@/helpers/gsx'
-import { getDateString, getNextSixWeeks } from '@/utils'
+import type { itineraryType } from '../helpers/gsx'
+import { getDateString, getNextSixWeeks } from '../utils'
 import CalendarDate from './CalendarDate'
 import Grid from '@mui/material/Grid'
-import { StartDateContext } from '@/contexts'
-import type { monthType } from '@/types'
+import { StartDateContext } from '../contexts'
+import type { monthType } from '../types'
 import { useContext } from 'react'
 
 interface CalendarGridProps {

@@ -1,8 +1,8 @@
 import { Button, Paper, Typography } from '@mui/material'
 import DoubleArrowOutlinedIcon from '@mui/icons-material/DoubleArrowOutlined'
-import { StartDateContext } from '@/contexts'
-import type { monthType } from '@/types'
+import { StartDateContext } from '../contexts'
 import { useContext } from 'react'
+import type { monthType } from '../types'
 
 type MonthType = monthType
 
