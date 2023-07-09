@@ -5,12 +5,13 @@ import { formatGSXData } from '../helpers/gsx'
 import { fetchAPI } from '../services/gsx'
 import { SelectedDateContext, StartDateContext } from '../contexts'
 import { getMonth } from '../utils'
+import type { monthType } from '../types'
 import CalendarGrid from './CalendarGrid'
 import Header from './Header'
 import Sidebar from './Sidebar'
 
 const Calendar = () => {
-  const [currentMonth, setCurrentMonth] = useState<Date | Date[] | undefined>()
+  const [currentMonth, setCurrentMonth] = useState<monthType>()
   const [itineraryData, setItineraryData] = useState<itineraryType>({})
   const { startDate } = useContext(StartDateContext)
   const { selectedDate } = useContext(SelectedDateContext)
@@ -25,7 +26,7 @@ const Calendar = () => {
   }, [])
 
   useEffect(() => {
-    const month: Date | Date[] | undefined = getMonth(startDate)
+    const month: monthType = getMonth(startDate)
     setCurrentMonth(month)
   }, [startDate])
 

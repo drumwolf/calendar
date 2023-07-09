@@ -1,0 +1,1 @@
+export type monthType = Date | Date[] | undefined
