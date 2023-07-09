@@ -1,12 +1,13 @@
 import { Paper, Typography } from '@mui/material'
 import { SelectedDateContext } from '../contexts'
 import { datesAreEqual, isToday } from '../utils'
+import type { monthType } from '../types'
 import { useContext } from 'react'
 
 interface CalendarDateProps {
   date: Date
   itinerary: string[]
-  month: Date | Date[] | undefined
+  month: monthType
 }
 
 const CalendarDate: React.FC<CalendarDateProps> = ({ date, itinerary, month }) => {

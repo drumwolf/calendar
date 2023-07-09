@@ -3,11 +3,12 @@ import { getDateString, getNextSixWeeks } from '../utils'
 import CalendarDate from './CalendarDate'
 import Grid from '@mui/material/Grid'
 import { StartDateContext } from '../contexts'
+import type { monthType } from '../types'
 import { useContext } from 'react'
 
 interface CalendarGridProps {
   itineraryData: itineraryType
-  month: Date | Date[] | undefined
+  month: monthType
 }
 
 const CalendarGrid: React.FC<CalendarGridProps> = ({ itineraryData, month }) => {
