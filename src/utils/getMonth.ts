@@ -18,12 +18,12 @@ export const getMonth = (startDate: Date) => {
   }
   // if monthCount is NOT 3, then it will default to 2
   const daysInFormerMonth = getDaysLeftInMonth(startDate)
-  if (daysInFormerMonth < 14) {
-    return endMonth
-  }
-  //const daysInLatterMonth = endDate.getDate()
-  if (daysInFormerMonth >= 14) {
+  const daysInLatterMonth = endDate.getDate()
+  if (daysInFormerMonth > 28) {
     return startMonth
+  }
+  if (daysInLatterMonth > 28) {
+    return endMonth
   }
   return [startMonth, endMonth]
 }

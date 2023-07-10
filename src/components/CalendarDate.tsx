@@ -1,8 +1,8 @@
-import { Paper, Typography } from '@mui/material'
+import { Box, Paper, Typography } from '@mui/material'
 import { SelectedDateContext } from '../contexts'
 import { datesAreEqual, isToday } from '../utils'
 import type { monthType } from '../types'
-import { useContext } from 'react'
+import { ReactNode, useContext } from 'react'
 
 interface CalendarDateProps {
   date: Date
@@ -10,16 +10,28 @@ interface CalendarDateProps {
   month: monthType
 }
 
+const DateBox = ({ children }: { children: ReactNode }) => (
+  <Box
+    sx={{
+      bgcolor: '#300',
+      color: 'white',
+      width: '40px',
+      height: '40px',
+      display: 'flex',
+      borderRadius: '50%'
+    }
+  }>
+    {children}
+  </Box>
+)
+
 const CalendarDate: React.FC<CalendarDateProps> = ({ date, itinerary, month }) => {
   const { selectedDate, setSelectedDate } = useContext(SelectedDateContext)
   const keys: { [key: string]: number } = {}
   const dateNumber = date.getDate()
   const isSelectedDate = datesAreEqual(selectedDate, date)
-  let isThisMonth: boolean = false
-  if (month && !Array.isArray(month)) {
-    isThisMonth = date.getMonth() === month.getMonth()
-  }
-  const bgcolor = isSelectedDate ? '#e7e7e7' : isToday(date) ? '#f7dddd' : isThisMonth ? '#f7f7f7' : "#e2e2e2"
+  const isOddMonth = date.getMonth() % 2 === 1
+  const bgcolor = isSelectedDate ? '#f7dddd' : isOddMonth ? '#F2F2F2' : "#E9E9E9"
 
   return <Paper
     onClick={() => setSelectedDate(date)}
@@ -32,7 +44,7 @@ const CalendarDate: React.FC<CalendarDateProps> = ({ date, itinerary, month }) =
     }}
   >
     <Typography variant="h5">
-      {dateNumber}
+      {isToday(date) ? (<DateBox>{dateNumber}</DateBox>) : <>{dateNumber}</>}
     </Typography>
     {itinerary && (<ul>
       {

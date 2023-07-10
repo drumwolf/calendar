@@ -14,12 +14,20 @@ const lastWeekDate = (date: Date) => new Date(date.getFullYear(), date.getMonth(
 const nextWeekDate = (date: Date) => new Date(date.getFullYear(), date.getMonth(), date.getDate() + 7)
 
 const getHeaderText = (month: MonthType) => {
+  console.log('---', month)
   if (!month) return ''
   if (!Array.isArray(month)) {
     return month.toLocaleDateString('en-us', { month:'long', year:'numeric' })
   }
   if (Array.isArray(month)) {
-    return `${ month[0]?.toLocaleDateString('en-us', { month:'long' }) } / ${ month[1]?.toLocaleDateString('en-us', { month:'long' }) }`
+    const month1 = month[0]?.toLocaleDateString('en-us', { month: 'short' })
+    const month2 = month[1]?.toLocaleDateString('en-us', { month: 'short' })
+    const year1 = month[0]?.toLocaleDateString('en-us', { year: 'numeric' })
+    const year2 = month[1]?.toLocaleDateString('en-us', { year: 'numeric' })
+    if (year1 !== year2) {
+      return `${month1} ${year1} / ${month2} ${year2}`
+    }
+    return `${month1} / ${month2} ${year1}`
   }
   return ''
 }
@@ -31,7 +39,8 @@ const Header = ({ month }: HeaderProps) => {
     <Paper
       elevation={3}
       sx={{
-        bgcolor: '#e7e7e7',
+        bgcolor: '#663333',
+        color: '#E7E7E7',
         padding: '10px',
         height: '5vh',
         justifyContent: 'space-between',
