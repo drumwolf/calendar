@@ -10,18 +10,37 @@ interface CalendarDateProps {
   month: monthType
 }
 
-const DateBox = ({ children }: { children: ReactNode }) => (
+const DateBoxToday = ({ children }: { children: ReactNode }) => (
   <Box
     sx={{
       bgcolor: '#300',
       color: 'white',
-      width: '40px',
-      height: '40px',
+      width: '30px',
+      height: '30px',
       display: 'flex',
-      borderRadius: '50%'
+      borderRadius: '50%',
+      justifyContent: 'center',
+      alignItems: 'center',
     }
   }>
-    {children}
+    <Typography variant="body1">{children}</Typography>
+  </Box>
+)
+
+const DateBox = ({ children }: { children: ReactNode }) => (
+  <Box
+    sx={{
+      bgcolor: '#DDD',
+      color: '#300',
+      width: '30px',
+      height: '30px',
+      display: 'flex',
+      borderRadius: '50%',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }
+  }>
+    <Typography variant="body1" sx={{ fontWeight: 'bold' }}>{children}</Typography>
   </Box>
 )
 
@@ -42,10 +61,8 @@ const CalendarDate: React.FC<CalendarDateProps> = ({ date, itinerary, month }) =
       padding: '10px',
       cursor: 'pointer'
     }}
-  >
-    <Typography variant="h5">
-      {isToday(date) ? (<DateBox>{dateNumber}</DateBox>) : <>{dateNumber}</>}
-    </Typography>
+  >    
+    {isToday(date) ? (<DateBoxToday>{dateNumber}</DateBoxToday>) : <DateBox>{dateNumber}</DateBox>}
     {itinerary && (<ul>
       {
         itinerary.map(item => {
