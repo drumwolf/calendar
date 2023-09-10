@@ -5,14 +5,16 @@ import { List, ListItem, Paper, Typography } from '@mui/material'
 interface SidebarProps {
   date: Date
   itineraryData: itineraryType
+  width: number
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ date, itineraryData }) => {
+const Sidebar: React.FC<SidebarProps> = ({ date, itineraryData, width }) => {
   const itinerary = itineraryData[getDateString(date)]
   return (
     <Paper
       elevation={3}
       sx={{
+        width: `${width}px`,
         height: 'calc(100% - 20px)',
         bgcolor: '#e7e7e7',
         padding: '10px'

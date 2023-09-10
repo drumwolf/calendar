@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react'
-import { Grid } from '@mui/material'
+import { Box, Grid } from '@mui/material'
 import type { itineraryType } from '../helpers/gsx'
 import { formatGSXData } from '../helpers/gsx'
 import { fetchAPI } from '../services/gsx'
@@ -31,17 +31,11 @@ const Calendar = () => {
   }, [startDate])
 
   return (
-    <Grid container
-      columns={10}
-      height='100vh'
-      padding={1}
-      spacing={1}
-    >
-      <Grid container item
-        sm={8}
+    <Box sx={{ display: 'flex', height: '100vh'}}>
+      <Grid container width='100%'
         flexDirection='column'
         spacing={1}
-        >
+      >
         <Grid item width='100%'>
           <Header month={currentMonth} />
         </Grid>
@@ -52,13 +46,12 @@ const Calendar = () => {
           />
         </Grid>
       </Grid>
-      <Grid item sm={2}>
-        <Sidebar
-          date={selectedDate}
-          itineraryData={itineraryData}
-        />
-      </Grid>
-    </Grid>
+      <Sidebar
+        date={selectedDate}
+        itineraryData={itineraryData}
+        width={400}
+      />
+    </Box>
   )
 }
 
