@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react'
-import { Box, Grid } from '@mui/material'
+import { Box, Grid, useMediaQuery } from '@mui/material'
 import type { itineraryType } from '../helpers/gsx'
 import { formatGSXData } from '../helpers/gsx'
 import { fetchAPI } from '../services/gsx'
@@ -10,11 +10,16 @@ import CalendarGrid from './CalendarGrid'
 import Header from './Header'
 import Sidebar from './Sidebar'
 
+const BROWSER_WIDTH_BREAKPOINT = 1024
+const SIDEBAR_WIDTH = 350
+
 const Calendar = () => {
   const [currentMonth, setCurrentMonth] = useState<monthType>()
   const [itineraryData, setItineraryData] = useState<itineraryType>({})
   const { startDate } = useContext(StartDateContext)
   const { selectedDate } = useContext(SelectedDateContext)
+
+  const isExpandedWidth = useMediaQuery(`(max-width:${BROWSER_WIDTH_BREAKPOINT}px)`)
 
   useEffect(() => {
     async function getAPI() {
@@ -48,8 +53,9 @@ const Calendar = () => {
       </Grid>
       <Sidebar
         date={selectedDate}
+        isExpandedWidth={isExpandedWidth}
         itineraryData={itineraryData}
-        width={400}
+        width={SIDEBAR_WIDTH}
       />
     </Box>
   )
