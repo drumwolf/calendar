@@ -1,5 +1,5 @@
 import { Box, Paper, Typography } from '@mui/material'
-import { SelectedDateContext } from '../contexts'
+import { SelectedDateContext, ShowSidebarContext } from '../contexts'
 import { datesAreEqual, isToday } from '../utils'
 import type { monthType } from '../types'
 import { ReactNode, useContext } from 'react'
@@ -46,14 +46,20 @@ const DateBox = ({ children }: { children: ReactNode }) => (
 
 const CalendarDate: React.FC<CalendarDateProps> = ({ date, itinerary, month }) => {
   const { selectedDate, setSelectedDate } = useContext(SelectedDateContext)
+  const { setSidebarVisibility } = useContext(ShowSidebarContext)
   const keys: { [key: string]: number } = {}
   const dateNumber = date.getDate()
   const isSelectedDate = datesAreEqual(selectedDate, date)
   const isOddMonth = date.getMonth() % 2 === 1
   const bgcolor = isSelectedDate ? '#f7dddd' : isOddMonth ? '#F2F2F2' : "#E9E9E9"
 
+  const onClick = () => {
+    setSidebarVisibility(true)
+    setSelectedDate(date)
+  }
+
   return <Paper
-    onClick={() => setSelectedDate(date)}
+    onClick={onClick}
     elevation={3}
     sx={{
       height: 'calc(100% - 20px)',

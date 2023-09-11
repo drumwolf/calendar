@@ -6,6 +6,8 @@ interface SidebarProps {
   date: Date
   isExpandedWidth: boolean
   itineraryData: itineraryType
+  setSidebarVisibility: any
+  showSidebar: boolean
   width: number
 }
 
@@ -13,8 +15,12 @@ const Sidebar: React.FC<SidebarProps> = ({
   date,
   isExpandedWidth,
   itineraryData,
+  setSidebarVisibility,
+  showSidebar,
   width
 }) => {
+  console.log(showSidebar)
+
   const itinerary = itineraryData[getDateString(date)]
   const baseStyle = {
     width: `${width}px`,
@@ -24,7 +30,7 @@ const Sidebar: React.FC<SidebarProps> = ({
   }
   const wideStyle = {
     position: 'absolute',
-    right: 0,
+    right: showSidebar ? 0 : '-400px',
     ...baseStyle
   }
   const sidebarStyle = isExpandedWidth ? wideStyle : baseStyle
@@ -32,6 +38,7 @@ const Sidebar: React.FC<SidebarProps> = ({
   return (
     <Paper
       elevation={3}
+      onClick={() => setSidebarVisibility(false)}
       sx={sidebarStyle}
     >
       <Typography variant="h6">
