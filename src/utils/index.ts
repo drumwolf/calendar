@@ -3,6 +3,7 @@ import {
   getDateFormatted,
   getDateString,
   getLastSunday,
+  getMonthName,
   getNextSixWeeks,
   isToday
 } from './dateMethods'
@@ -17,5 +18,6 @@ export {
   getLastSunday,
   getNextSixWeeks,
   getMonth,
+  getMonthName,
   isToday
 }

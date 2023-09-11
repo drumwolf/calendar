@@ -19,7 +19,6 @@ const Sidebar: React.FC<SidebarProps> = ({
   showSidebar,
   width
 }) => {
-  console.log(showSidebar)
 
   const itinerary = itineraryData[getDateString(date)]
   const baseStyle = {
