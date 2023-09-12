@@ -15,7 +15,7 @@ export const getLastSunday = (initialDate: Date): Date => {
   return date
 }
 
-export const getMonthName = (date: Date): string => {
+export const getMonthLabel = (date: Date): string => {
   const monthNames = [
     'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
     'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
