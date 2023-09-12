@@ -13,62 +13,42 @@ interface CalendarDateProps {
 interface DateBoxProps {
   dateNumber: number
   dateMonth: string
+  isToday?: boolean
 }
 
-const DateBoxToday: React.FC<DateBoxProps> = ({ dateNumber, dateMonth }) => (
-  <Box sx={{ width: '30px', textAlign: 'center' }}>
-    <Box
-      sx={{
-        bgcolor: '#300',
-        color: 'white',
-        width: '30px',
-        height: '30px',
-        display: 'flex',
-        borderRadius: '50%',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }
-    }>
-      <Typography variant="body1">{dateNumber}</Typography>
+const DateBox: React.FC<DateBoxProps> = ({ dateNumber, dateMonth, isToday }) => {
+  const defaultBoxStyle = {
+    bgcolor: '#DDD',
+    color: '#300',
+    width: '30px',
+    height: '30px',
+    display: 'flex',
+    borderRadius: '50%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
+  const isTodayBoxStyle = {
+    ...defaultBoxStyle,
+    bgcolor: '#300',
+    color: 'white'
+  }
+  const boxStyle = isToday ? isTodayBoxStyle : defaultBoxStyle
+  return (
+    <Box sx={{ width: '30px', textAlign: 'center' }}>
+      <Box sx={boxStyle}>
+        <Typography variant="body1" sx={{ fontWeight: isToday ? 'bold' : null }}>{dateNumber}</Typography>
+      </Box>
+      <Typography
+        variant="body2"
+        sx={{
+          color: '#666', fontSize: '11px', textTransform: 'uppercase'
+        }}
+      >
+        {dateMonth}
+      </Typography>
     </Box>
-    <Typography
-      variant="body2"
-      sx={{
-        color: '#666', fontSize: '11px', textTransform: 'uppercase'
-      }}
-    >
-      {dateMonth}
-    </Typography>
-  </Box>
-)
-
-const DateBox: React.FC<DateBoxProps> = ({ dateNumber, dateMonth }) => (
-  <Box sx={{ width: '30px', textAlign: 'center' }}>
-    <Box
-      sx={{
-        bgcolor: '#DDD',
-        color: '#300',
-        width: '30px',
-        height: '30px',
-        display: 'flex',
-        borderRadius: '50%',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }
-    }>
-      <Typography variant="body1" sx={{ fontWeight: 'bold' }}>{dateNumber}</Typography>
-    </Box>
-    <Typography
-      variant="body2"
-      sx={{
-        color: '#666', fontSize: '11px', textTransform: 'uppercase'
-      }}
-    >
-      {dateMonth}
-    </Typography>
-  </Box>
-)
-
+  )
+}
 const CalendarDate: React.FC<CalendarDateProps> = ({ date, itinerary }) => {
   const { selectedDate, setSelectedDate } = useContext(SelectedDateContext)
   const { setSidebarVisibility } = useContext(ShowSidebarContext)
@@ -93,8 +73,12 @@ const CalendarDate: React.FC<CalendarDateProps> = ({ date, itinerary }) => {
       padding: '10px',
       cursor: 'pointer'
     }}
-  >    
-    {isToday(date) ? (<DateBoxToday dateNumber={dateNumber} dateMonth={dateMonth} />) : <DateBox dateNumber={dateNumber} dateMonth={dateMonth} />}
+  >
+    <DateBox
+      dateNumber={dateNumber}
+      dateMonth={dateMonth}
+      isToday={isToday(date)}
+    />
     {itinerary && (<ul>
       {
         itinerary.map(item => {
