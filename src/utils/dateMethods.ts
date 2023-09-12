@@ -15,15 +15,6 @@ export const getLastSunday = (initialDate: Date): Date => {
   return date
 }
 
-export const getMonthLabel = (date: Date): string => {
-  const monthNames = [
-    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
-  ];
-  const monthIndex = date.getMonth()
-  return monthNames[monthIndex];
-}
-
 export const getNextSixWeeks = (initialDate: Date): Date[][] => {
   const weeks = []
   const previousSundayDate = getLastSunday(initialDate)
