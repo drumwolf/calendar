@@ -25,7 +25,8 @@ const Sidebar: React.FC<SidebarProps> = ({
     width: `${width}px`,
     height: 'calc(100% - 20px)',
     bgcolor: '#e7e7e7',
-    padding: '10px'
+    padding: '10px',
+    transition: '0.5s'
   }
   const wideStyle = {
     position: 'absolute',
