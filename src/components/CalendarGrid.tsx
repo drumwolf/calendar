@@ -32,7 +32,12 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ itineraryData, month }) => 
             week.map(date => {
               const dateStr = getDateString(date)
               return (
-                <Grid item key={dateStr} flex='1'>
+                <Grid item key={dateStr} flex='1'
+                  sx={{
+                    overflow: 'hidden',
+                    padding: '1px'
+                  }}
+                >
                   <CalendarDate
                     date={date}
                     itinerary={itineraryData[dateStr]}
