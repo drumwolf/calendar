@@ -46,15 +46,14 @@ const Calendar = () => {
         position: 'relative'
       }}
     >
-      <Grid container width='100%'
-        flexDirection='column'
-        spacing='3px'
-      >
+      <Grid container width='100%' flexDirection='column'>
         <Grid item width='100%'>
           <Header
             month={currentMonth}
             onClick={() => setSidebarVisibility(false)}
           />
+        </Grid>
+        <Grid item>
           <WeekdayRow />
         </Grid>
         <Grid item flex={1}>

@@ -1,7 +1,7 @@
 import { Grid, Typography } from '@mui/material'
 import TextLabel from './TextLabel'
 
-const DAYS_OF_WEEK = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+const DAYS_OF_WEEK = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 
 const WeekdayRow = () => {
   return (
@@ -11,7 +11,6 @@ const WeekdayRow = () => {
       sx={{
         bgcolor: '#DDD',
         color: '#300',
-        marginTop: '6px',
         paddingY: 1,
         border: 'solid 1px #CCC',
         borderRadius: 1
