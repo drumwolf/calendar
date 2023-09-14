@@ -2,7 +2,7 @@ import { Box, Paper, Typography } from '@mui/material'
 import { SelectedDateContext, ShowSidebarContext } from '../contexts'
 import { datesAreEqual, getMonthLabel, isToday } from '../utils'
 import type { monthType } from '../types'
-import { ReactNode, ReactSVG, useContext } from 'react'
+import { useContext } from 'react'
 
 interface CalendarDateProps {
   date: Date

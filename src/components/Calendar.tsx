@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react'
-import { Box, Grid, Typography, useMediaQuery } from '@mui/material'
+import { Box, Grid, useMediaQuery } from '@mui/material'
 import type { itineraryType } from '../helpers/gsx'
 import { formatGSXData } from '../helpers/gsx'
 import { fetchAPI } from '../services/gsx'
@@ -9,10 +9,10 @@ import type { monthType } from '../types'
 import CalendarGrid from './CalendarGrid'
 import Header from './Header'
 import Sidebar from './Sidebar'
+import WeekdayRow from './WeekdayRow'
 
 const BROWSER_WIDTH_BREAKPOINT = 1024
 const SIDEBAR_WIDTH = 350
-const DAYS_OF_WEEK = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 
 const Calendar = () => {
   const [currentMonth, setCurrentMonth] = useState<monthType>()
@@ -55,42 +55,7 @@ const Calendar = () => {
             month={currentMonth}
             onClick={() => setSidebarVisibility(false)}
           />
-          <Grid
-            container
-            item
-            sx={{
-              bgcolor: '#DDD',
-              color: '#300',
-              marginTop: 1,
-              paddingY: 1,
-              border: 'solid 1px #CCC',
-              borderRadius: 1
-            }}
-          >
-          {
-            DAYS_OF_WEEK.map((day) =>
-              <Grid
-                item
-                flex='1'
-                key={day}
-                sx={{
-                  borderRight: 'solid 1px #CCC',
-                  color: '#300',
-                  textAlign: 'center'
-                }}
-              >
-                <Typography
-                  variant="body2"
-                  sx={{
-                    color: '#666', fontSize: '11px', textTransform: 'uppercase'
-                  }}
-                >
-                  {day}
-                </Typography>
-              </Grid>
-            )
-          }
-          </Grid>
+          <WeekdayRow />
         </Grid>
         <Grid item flex={1}>
           <CalendarGrid
