@@ -10,7 +10,7 @@ const WeekdayRow = () => {
       sx={{
         bgcolor: '#DDD',
         color: '#300',
-        marginTop: 1,
+        marginTop: '6px',
         paddingY: 1,
         border: 'solid 1px #CCC',
         borderRadius: 1

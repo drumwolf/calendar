@@ -48,7 +48,7 @@ const Calendar = () => {
     >
       <Grid container width='100%'
         flexDirection='column'
-        spacing={1}
+        spacing='3px'
       >
         <Grid item width='100%'>
           <Header
