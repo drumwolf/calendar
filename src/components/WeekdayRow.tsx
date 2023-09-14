@@ -1,4 +1,5 @@
 import { Grid, Typography } from '@mui/material'
+import TextLabel from './TextLabel'
 
 const DAYS_OF_WEEK = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 
@@ -28,14 +29,7 @@ const WeekdayRow = () => {
               textAlign: 'center'
           }}
         >
-          <Typography
-            variant="body2"
-            sx={{
-              color: '#666', fontSize: '11px', textTransform: 'uppercase'
-            }}
-          >
-            {day}
-          </Typography>
+          <TextLabel>{day}</TextLabel>
         </Grid>
       )
     }

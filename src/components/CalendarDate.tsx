@@ -3,6 +3,7 @@ import { SelectedDateContext, ShowSidebarContext } from '../contexts'
 import { datesAreEqual, getMonthLabel, isToday } from '../utils'
 import type { monthType } from '../types'
 import { useContext } from 'react'
+import TextLabel from './TextLabel'
 
 interface CalendarDateProps {
   date: Date
@@ -36,16 +37,13 @@ const DateBox: React.FC<DateBoxProps> = ({ dateNumber, dateMonth, isToday }) => 
   return (
     <Box sx={{ width: '30px', textAlign: 'center' }}>
       <Box sx={boxStyle}>
-        <Typography variant="body1" sx={{ fontWeight: isToday ? 'bold' : null }}>{dateNumber}</Typography>
+        <Typography variant="body1" sx={{ fontWeight: isToday ? 'bold' : null }}>
+          {dateNumber}
+        </Typography>
       </Box>
-      <Typography
-        variant="body2"
-        sx={{
-          color: '#666', fontSize: '11px', textTransform: 'uppercase'
-        }}
-      >
+      <TextLabel>
         {dateMonth}
-      </Typography>
+      </TextLabel>
     </Box>
   )
 }
