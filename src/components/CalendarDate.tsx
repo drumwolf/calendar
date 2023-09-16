@@ -1,9 +1,9 @@
-import { Box, Paper, Typography } from '@mui/material'
+import { Paper } from '@mui/material'
 import { SelectedDateContext, ShowSidebarContext } from '../contexts'
 import { datesAreEqual, getMonthLabel, isToday } from '../utils'
 import type { monthType } from '../types'
 import { useContext } from 'react'
-import TextLabel from './TextLabel'
+import CalendarDateBox from './CalendarDateBox'
 
 interface CalendarDateProps {
   date: Date
@@ -11,42 +11,6 @@ interface CalendarDateProps {
   month: monthType
 }
 
-interface DateBoxProps {
-  dateNumber: number
-  dateMonth: string
-  isToday?: boolean
-}
-
-const DateBox: React.FC<DateBoxProps> = ({ dateNumber, dateMonth, isToday }) => {
-  const defaultBoxStyle = {
-    bgcolor: '#DDD',
-    color: '#300',
-    width: '30px',
-    height: '30px',
-    display: 'flex',
-    borderRadius: '50%',
-    justifyContent: 'center',
-    alignItems: 'center',
-  }
-  const isTodayBoxStyle = {
-    ...defaultBoxStyle,
-    bgcolor: '#300',
-    color: 'white'
-  }
-  const boxStyle = isToday ? isTodayBoxStyle : defaultBoxStyle
-  return (
-    <Box sx={{ width: '30px', textAlign: 'center' }}>
-      <Box sx={boxStyle}>
-        <Typography variant="body1" sx={{ fontWeight: isToday ? 'bold' : null }}>
-          {dateNumber}
-        </Typography>
-      </Box>
-      <TextLabel>
-        {dateMonth}
-      </TextLabel>
-    </Box>
-  )
-}
 const CalendarDate: React.FC<CalendarDateProps> = ({ date, itinerary }) => {
   const { selectedDate, setSelectedDate } = useContext(SelectedDateContext)
   const { setSidebarVisibility } = useContext(ShowSidebarContext)
@@ -72,7 +36,7 @@ const CalendarDate: React.FC<CalendarDateProps> = ({ date, itinerary }) => {
       cursor: 'pointer'
     }}
   >
-    <DateBox
+    <CalendarDateBox
       dateNumber={dateNumber}
       dateMonth={dateMonth}
       isToday={isToday(date)}
