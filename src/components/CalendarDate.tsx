@@ -1,8 +1,9 @@
 import { Box, Paper, Typography } from '@mui/material'
-import { SelectedDateContext } from '../contexts'
-import { datesAreEqual, isToday } from '../utils'
+import { SelectedDateContext, ShowSidebarContext } from '../contexts'
+import { datesAreEqual, getMonthLabel, isToday } from '../utils'
 import type { monthType } from '../types'
-import { ReactNode, useContext } from 'react'
+import { useContext } from 'react'
+import TextLabel from './TextLabel'
 
 interface CalendarDateProps {
   date: Date
@@ -10,50 +11,59 @@ interface CalendarDateProps {
   month: monthType
 }
 
-const DateBoxToday = ({ children }: { children: ReactNode }) => (
-  <Box
-    sx={{
-      bgcolor: '#300',
-      color: 'white',
-      width: '30px',
-      height: '30px',
-      display: 'flex',
-      borderRadius: '50%',
-      justifyContent: 'center',
-      alignItems: 'center',
-    }
-  }>
-    <Typography variant="body1">{children}</Typography>
-  </Box>
-)
+interface DateBoxProps {
+  dateNumber: number
+  dateMonth: string
+  isToday?: boolean
+}
 
-const DateBox = ({ children }: { children: ReactNode }) => (
-  <Box
-    sx={{
-      bgcolor: '#DDD',
-      color: '#300',
-      width: '30px',
-      height: '30px',
-      display: 'flex',
-      borderRadius: '50%',
-      justifyContent: 'center',
-      alignItems: 'center',
-    }
-  }>
-    <Typography variant="body1" sx={{ fontWeight: 'bold' }}>{children}</Typography>
-  </Box>
-)
-
-const CalendarDate: React.FC<CalendarDateProps> = ({ date, itinerary, month }) => {
+const DateBox: React.FC<DateBoxProps> = ({ dateNumber, dateMonth, isToday }) => {
+  const defaultBoxStyle = {
+    bgcolor: '#DDD',
+    color: '#300',
+    width: '30px',
+    height: '30px',
+    display: 'flex',
+    borderRadius: '50%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
+  const isTodayBoxStyle = {
+    ...defaultBoxStyle,
+    bgcolor: '#300',
+    color: 'white'
+  }
+  const boxStyle = isToday ? isTodayBoxStyle : defaultBoxStyle
+  return (
+    <Box sx={{ width: '30px', textAlign: 'center' }}>
+      <Box sx={boxStyle}>
+        <Typography variant="body1" sx={{ fontWeight: isToday ? 'bold' : null }}>
+          {dateNumber}
+        </Typography>
+      </Box>
+      <TextLabel>
+        {dateMonth}
+      </TextLabel>
+    </Box>
+  )
+}
+const CalendarDate: React.FC<CalendarDateProps> = ({ date, itinerary }) => {
   const { selectedDate, setSelectedDate } = useContext(SelectedDateContext)
+  const { setSidebarVisibility } = useContext(ShowSidebarContext)
   const keys: { [key: string]: number } = {}
+  const dateMonth = getMonthLabel(date)
   const dateNumber = date.getDate()
   const isSelectedDate = datesAreEqual(selectedDate, date)
   const isOddMonth = date.getMonth() % 2 === 1
   const bgcolor = isSelectedDate ? '#f7dddd' : isOddMonth ? '#F2F2F2' : "#E9E9E9"
 
+  const onClick = () => {
+    setSidebarVisibility(true)
+    setSelectedDate(date)
+  }
+
   return <Paper
-    onClick={() => setSelectedDate(date)}
+    onClick={onClick}
     elevation={3}
     sx={{
       height: 'calc(100% - 20px)',
@@ -61,8 +71,12 @@ const CalendarDate: React.FC<CalendarDateProps> = ({ date, itinerary, month }) =
       padding: '10px',
       cursor: 'pointer'
     }}
-  >    
-    {isToday(date) ? (<DateBoxToday>{dateNumber}</DateBoxToday>) : <DateBox>{dateNumber}</DateBox>}
+  >
+    <DateBox
+      dateNumber={dateNumber}
+      dateMonth={dateMonth}
+      isToday={isToday(date)}
+    />
     {itinerary && (<ul>
       {
         itinerary.map(item => {

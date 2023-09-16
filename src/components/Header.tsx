@@ -8,13 +8,13 @@ type MonthType = monthType
 
 interface HeaderProps {
   month: MonthType
+  onClick: () => void
 }
 
 const lastWeekDate = (date: Date) => new Date(date.getFullYear(), date.getMonth(), date.getDate() - 7)
 const nextWeekDate = (date: Date) => new Date(date.getFullYear(), date.getMonth(), date.getDate() + 7)
 
 const getHeaderText = (month: MonthType) => {
-  console.log('---', month)
   if (!month) return ''
   if (!Array.isArray(month)) {
     return month.toLocaleDateString('en-us', { month:'long', year:'numeric' })
@@ -32,12 +32,13 @@ const getHeaderText = (month: MonthType) => {
   return ''
 }
 
-const Header = ({ month }: HeaderProps) => {
+const Header = ({ month, onClick }: HeaderProps) => {
   const { startDate, setStartDate } = useContext(StartDateContext)
 
   return (
     <Paper
       elevation={3}
+      onClick={onClick}
       sx={{
         bgcolor: '#663333',
         color: '#E7E7E7',

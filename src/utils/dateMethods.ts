@@ -4,7 +4,13 @@ const TOTAL_WEEKS = 6
 export const datesAreEqual = (date1: Date, date2: Date): boolean =>
   getDateString(date1) === getDateString(date2)
 
-export const getDateString = (date: Date): string => date.toISOString().split('T')[0]
+export const getDateString = (date: Date): string => {
+  const yearStr = date.getFullYear()
+  const month = date.getMonth() + 1
+  const dateStr = date.getDate()
+  const monthStr = month < 10 ? `0${month}` : month
+  return `${yearStr}-${monthStr}-${dateStr}`
+}
 
 export const getDateFormatted = (date: Date): string =>
   date.toLocaleDateString("en-GB", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })

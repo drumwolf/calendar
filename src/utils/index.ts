@@ -7,7 +7,7 @@ import {
   isToday
 } from './dateMethods'
 import { getHashDate } from './getHashDate'
-import { getMonth } from './getMonth'
+import { getMonth, getMonthLabel } from './getMonth'
 
 export {
   datesAreEqual,
@@ -17,5 +17,6 @@ export {
   getLastSunday,
   getNextSixWeeks,
   getMonth,
+  getMonthLabel,
   isToday
 }
