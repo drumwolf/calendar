@@ -1,4 +1,4 @@
-import { Paper } from '@mui/material'
+import { Box, Paper, useMediaQuery } from '@mui/material'
 import { SelectedDateContext, ShowSidebarContext } from '../contexts'
 import { datesAreEqual, getMonthLabel, isToday } from '../utils'
 import type { monthType } from '../types'
@@ -21,6 +21,9 @@ const CalendarDate: React.FC<CalendarDateProps> = ({ date, itinerary }) => {
   const isOddMonth = date.getMonth() % 2 === 1
   const bgcolor = isSelectedDate ? '#f7dddd' : isOddMonth ? '#F2F2F2' : "#E9E9E9"
 
+  const MIN_DESKTOP_WIDTH = 600
+  const isDesktop = useMediaQuery(`(min-width:${MIN_DESKTOP_WIDTH}px)`)
+
   const onClick = () => {
     setSidebarVisibility(true)
     setSelectedDate(date)
@@ -41,7 +44,17 @@ const CalendarDate: React.FC<CalendarDateProps> = ({ date, itinerary }) => {
       dateMonth={dateMonth}
       isToday={isToday(date)}
     />
-    {itinerary && (<ul>
+    {itinerary && !isDesktop && <Box
+      sx={{
+        width: '16px',
+        height: '16px',
+        borderRadius: '50%',
+        backgroundColor: 'black',
+        marginTop: '20px',
+        marginX: 'auto'
+      }}
+    />}
+    {itinerary && isDesktop && (<ul>
       {
         itinerary.map(item => {
           const key = item.split(' ').join('')
